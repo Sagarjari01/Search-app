@@ -4,7 +4,7 @@ const Searchbar = (props) => {
     const inputText = useRef(null)
     const handleKeyDown = (event,param) =>{
         if(param==="KEY" && event.key=="Enter"){
-          props.setMessage(event.target.value)
+          props.setSend(true)
         }
         else if(param==="CLICK"){
           props.setMessage(inputText.current.value)
@@ -16,13 +16,16 @@ const Searchbar = (props) => {
       onClick={() => {
         props.SetISClicked(true);
       }}
+      onFocus={()=>{props.SetISClicked(true)}}
       // onKeyDown={handleKeyDown}> without passing parameter and giving event as param
       onKeyDown={(event) => handleKeyDown(event, "KEY")}
+      onChange={(event)=>props.setMessage(event.target.value)}
     >
       <div className="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
         <input
           className=" ml-2 peer h-full w-full outline-none text-sm text-gray-700 pr-2"
           type="text"
+          autoComplete="off"
           id="search"
           ref={inputText}
           placeholder="Search something.."

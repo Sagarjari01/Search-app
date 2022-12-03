@@ -1,11 +1,7 @@
-// a. Click on the search tab latest trend suggestion box open 
-// b. Implement faker api for showing data. 
-// c. According to the filter data should update. 
-// d. Click on the Wishlist colour should change to red 
-// e. On hovering to the product view product button should be visible
-
-
+import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import Homepage from './Components/Homepage';
+import Product from './Components/Product';
+import SearchResults from './Components/SearchResults';
 
 function App() {
   const myStyle={
@@ -15,14 +11,18 @@ function App() {
     backgroundRepeat: 'no-repeat',
 };
   return (
-    <div style={myStyle} className='h-screen'>
-      {/* <header className='h-14'>
-        <h2>Header</h2>
-      </header> */}
-      <main>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" 
+      element={
+      <div style={myStyle} className='h-screen'>
         <Homepage />
-      </main>
-    </div>
+      </div>}>
+      </Route>
+      <Route path='/search-results' element={<SearchResults />}></Route>
+      {/* <Route path='/product' element={<Product />}></Route> */}
+    </Routes>
+    </BrowserRouter>
   );
 }
 
